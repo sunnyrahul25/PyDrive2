@@ -169,8 +169,8 @@ class GoogleAuth(ApiAttributeMixin, object):
     http = ApiAttribute("http")
     service = ApiAttribute("service")
     auth_method = ApiAttribute("auth_method")
-
-    def __init__(self, settings_file="settings.yaml", http_timeout=None):
+    access_token = ""
+    def __init__(self, settings_file="settings.yaml", http_timeout=None,access_token=""):
         """Create an instance of GoogleAuth.
 
     This constructor just sets the path of settings file.
@@ -182,6 +182,8 @@ class GoogleAuth(ApiAttributeMixin, object):
         self.http_timeout = http_timeout
         ApiAttributeMixin.__init__(self)
         self.thread_local = threading.local()
+
+        self.access_token=access_token
         self.client_config = {}
         try:
             self.settings = LoadSettingsFile(settings_file)

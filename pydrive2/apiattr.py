@@ -148,6 +148,7 @@ class ApiResourceList(ApiAttributeMixin, ApiResource, Iterator):
         if "pageToken" in self and self["pageToken"] is None:
             raise StopIteration
         result = self._GetList()
+        # might need to change api call for other dropbox container
         self["pageToken"] = self.metadata.get("nextPageToken")
         return result
 
